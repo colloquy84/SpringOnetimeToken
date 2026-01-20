@@ -38,16 +38,14 @@ public class OneTimeTokenGenerationSuccessHandlerImpl implements OneTimeTokenGen
         //Creating a link with token and sending it to email using resend api
         Resend resend = new Resend(resendApiKey);
         CreateEmailOptions params = CreateEmailOptions.builder()
-                .from("Substring Technologies <onboarding@resend.dev>")
+                .from("Arun's Spring One time Token App <onboarding@resend.dev>")
                 .to("colloquy84@gmail.com")
                 .subject("Magic link for you boot app")
                 .html(magicLink)
                 .build();
-
         try {
             CreateEmailResponse send = resend.emails().send(params);
             System.out.println(send);
-
         } catch (ResendException e) {
             e.printStackTrace();
         }
